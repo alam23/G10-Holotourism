@@ -1,0 +1,23 @@
+{
+  "name": "g10-holotourism-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alam23/G10-Holotourism-back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alam23/G10-Holotourism-back/issues"
+  },
+  "homepage": "https://github.com/alam23/G10-Holotourism-back#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
