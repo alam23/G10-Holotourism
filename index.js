@@ -51,6 +51,8 @@ app.use( express.json() );
  *
 */
 app.use('/api/auth', require('./routers/auth'));
+app.use('/api/images', require('./routers/images'));
+app.use('/api/detector', require('./routers/detector'));
 
 
 //escuchamoms las peticiones
