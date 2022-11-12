@@ -97,7 +97,33 @@ const saveImagedb = async (req = request, res = response) => {
   }
 }
 
+const showImages = async(req = request, res= response) =>{
+  try{
+    let user_id = await checkUser(req,res);
+    let images = await Image.find({ user: user_id })
+    if (images){
+      return res.status(200).json({
+        images
+      })
+    }
+    else{
+      return res.status(404).json({
+        ok:false,
+        msg:"No se encontraron imagenes"
+      })
+    }
+  }
+  catch (error){
+    console.log("errores al mostrar imagenes: ", error);
+    return res.status(500).json({
+      ok:false,
+      msg: error
+    })
+  }
+}
+
 module.exports = {
     guardarImagen,
-    saveImagedb
+    saveImagedb,
+    showImages
 }
