@@ -57,3 +57,4 @@ app.use('/api/auth', require('./routers/auth'));
 app.listen( process.env.PORT, () => {
     console.log('Escuchando en el puerto ', process.env.PORT);
 });
+module.exports = app;
