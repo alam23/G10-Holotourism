@@ -14,9 +14,4 @@ router.post('/savedbimg',
             ],
             saveImagedb);
 
-router.get('/showimages', showImages);
-
-router.delete('/delete/:name', deleteImage);
-
-
 module.exports = router;

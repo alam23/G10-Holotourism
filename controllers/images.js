@@ -97,61 +97,7 @@ const saveImagedb = async (req = request, res = response) => {
   }
 }
 
-const showImages = async(req = request, res= response) =>{
-  try{
-    let user_id = await checkUser(req,res);
-    let images = await Image.find({ user: user_id })
-    if (images){
-      return res.status(200).json({
-        images
-      })
-    }
-    else{
-      return res.status(404).json({
-        ok:false,
-        msg:"No se encontraron imagenes"
-      })
-    }
-  }
-  catch (error){
-    console.log("errores al mostrar imagenes: ", error);
-    return res.status(500).json({
-      ok:false,
-      msg: error
-    })
-  }
-}
-
-const deleteImage = async(req = request, res= response) =>{
-  try{
-    let user_id = await checkUser(req,res);
-    let user_image = await Image.find({ filename: req.params.name, user: user_id});
-    if (user_image){
-      await Image.deleteOne({ filename: req.filename, user: user_id});
-      return res.status(200).json({
-        ok: true,
-        msg: "Imagen borrada exitosamente"
-      })
-    }
-    else {
-      return res.status(404).json({
-        ok:false,
-        msg:"No se encontró la imagen"
-      })
-    }
-  }
-  catch(error){
-    console.log("errores al borrar imagen: ", error);
-    return res.status(500).json({
-      ok:false,
-      msg: error
-    })
-  }
-}
-
 module.exports = {
     guardarImagen,
-    saveImagedb,
-    showImages,
-    deleteImage
+    saveImagedb
 }

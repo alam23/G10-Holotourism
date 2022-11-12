@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
 const app = require("../index");
+const { deleteOne } = require("../models/User");
 
 require("dotenv").config();
 
+beforeAll(async () => {
+  await mongoose.connection.close();
+})
+
 /* Connecting to the database before each test. */
 beforeEach(async () => {
-    await mongoose.connect(process.env.DB_CNN);
+    await mongoose.connect(process.env.DB_CNN_TEST);
   });
   
   /* Closing database connection after each test. */
