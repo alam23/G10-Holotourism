@@ -1,0 +1,289 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Holotourism",
+    "description": "La descripción del backend en OpenAPI para el proyecto Holotourism",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://40.112.63.111:8081/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Login/register"
+    },
+    {
+      "name": "detector",
+      "description": "VisionAI calls"
+    },
+    {
+      "name": "images",
+      "description": "Operaciones de imagenes"
+    }
+  ],
+  "paths": {
+    "/auth/": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "inicia sesion al usuario",
+        "operationId": "loginUser",
+        "requestBody": {
+          "description": "Objeto de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario-login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "Operación exitosa",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/auth/new": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Agrega un nuevo usuario",
+        "operationId": "registerUser",
+        "requestBody": {
+          "description": "Objeto de usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Operación exitosa",
+            "content": {}
+          },
+          "400": {
+            "description": "Usuario ya registrado",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/detector": {
+      "post": {
+        "tags": [
+          "detector"
+        ],
+        "summary": "Detecta el lugar turístico de una imagen",
+        "operationId": "detectImage",
+        "requestBody": {
+          "description": "Objeto de imagen",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/File"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {}
+          },
+          "500": {
+            "description": "Habla con el administrador",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/images/saveimg": {
+      "post": {
+        "tags": [
+          "images"
+        ],
+        "summary": "Guardar imagen",
+        "operationId": "saveImg",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Imagen subida exitosamente",
+            "content": {}
+          },
+          "500": {
+            "description": "No se pudo subir la imagen",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/images/savedbimg": {
+      "post": {
+        "tags": [
+          "images"
+        ],
+        "summary": "Guardar enlace de imagen en la db",
+        "operationId": "savedbImg",
+        "requestBody": {
+          "description": "Direccion",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/images"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Imagen guardada en la base de datos",
+            "content": {}
+          },
+          "500": {
+            "description": "Error al guardar la imagen",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/images/showimages": {
+      "get": {
+        "tags": [
+          "images"
+        ],
+        "summary": "Mostrar imagenes de usuario",
+        "operationId": "showImages",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {}
+          },
+          "500": {
+            "description": "Error al mostrar las imagenes",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "apellido": {
+            "type": "string"
+          },
+          "movil": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Usuario"
+        }
+      },
+      "Usuario-login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "UsuarioLogin"
+        }
+      },
+      "File": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string"
+          }
+        }
+      },
+      "images": {
+        "type": "object",
+        "properties": {
+          "tourname": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "latitud": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "fileUrl": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "images"
+        }
+      }
+    }
+  }
+}
