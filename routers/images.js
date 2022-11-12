@@ -14,4 +14,6 @@ router.post('/savedbimg',
             ],
             saveImagedb);
 
+router.get('/showimages', showImages);
+
 module.exports = router;
