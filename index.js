@@ -4,34 +4,56 @@ const cors = require('cors');
 const { dbConnection } = require('./database/config');
 
 
-/**
- * inicio de servidor
- */
+/*
+ *
+    CREAMOS EL SERVIDOR
+ *
+ *
+*/
 const app = express();
 
-/**
- * conexión a base de datos
- */
+
+/*
+ *
+    CONEXION A LA BASE DE DATOS
+ *
+ *
+*/
 dbConnection();
 
-/**
- * middlewares necesarios
- */
 
+
+
+/*
+ *
+ *
+    MIDDLEWARES NECESARIOS
+ *
+ *
+*/
 // cors
 app.use(cors())
 
 // directorio publico
 app.use( express.static('public') );
 
+
 //lectura y parseo del body
 app.use( express.json() );
 
-/**
- * Rutas
- */
 
 
+
+/*
+ *
+    RUTAS
+ *
+ *
+*/
+app.use('/api/auth', require('./routers/auth'));
+
+
+//escuchamoms las peticiones
 app.listen( process.env.PORT, () => {
     console.log('Escuchando en el puerto ', process.env.PORT);
 });
