@@ -9,6 +9,8 @@ Para desplegar la aplicación, se debe tener lo siguiente:
 * Proyecto clonado
 
 Con el usuario no root:
+
+
 En la carpeta del proyecto ejecutar:
 ```
 pm2 start index.js
