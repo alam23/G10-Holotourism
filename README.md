@@ -3,7 +3,7 @@
 Para desplegar la aplicación, se debe tener lo siguiente:
 * Servidor Ubuntu 18.04 con un usuario no root y firewall activo
 * Un dominio apuntando a tu ip pública
-* Nginx instalado y configurado con certificados SSL usando de Let's Encrypt
+* Nginx instalado y configurado con certificados SSL usando Let's Encrypt
 * Un server block creado en Nginx. Para este caso usaremos "holotourism.com" 
 * pm2 instalado
 * Proyecto clonado
