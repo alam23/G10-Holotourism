@@ -52,7 +52,7 @@ app.use(responseTime((req, res, time) =>{
          route: req.baseUrl + req.route.path,
          status_code: res.statusCode,
       },
-      time * 1000
+      time / 1000
       );
    }
 }));
