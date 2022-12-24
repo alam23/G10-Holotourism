@@ -10,14 +10,14 @@ const checkUser = (req, res, next) =>{
             jwt.verify(token, process.env.SECRET_JWT, async (err, decodedToken) => {
                 if (err){
                     console.log(err);
-                    reject('Problemas token');
+                    reject('Problemas con el token');
                 }
                 else{
                     resolve(decodedToken.uid)
                 }
             })
         }else{
-            reject('No hay token en la petición.')
+            reject('No hay token en la petición')
         }
     });
 
