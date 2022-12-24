@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://40.112.63.111:8081/api"
+      "url": "https://holotourism.ga/api"
     }
   ],
   "tags": [
