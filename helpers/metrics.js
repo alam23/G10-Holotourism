@@ -10,12 +10,6 @@ const restResponseTimeHistogram = new client.Histogram({
     labelNames: ["method", "route", "status_code"]
 })
 
-const databaseResponseTimeHistogram = new client.Histogram({
-    name: "db_response_time_duration_seconds",
-    help: "Database response time in seconds",
-    labelNames: ["operation", "success"],
-});
-
 const startMetricsServer = () => {
 
     const collectDefaultMetrics = client.collectDefaultMetrics
