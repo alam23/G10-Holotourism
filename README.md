@@ -6,7 +6,7 @@ Para desplegar la aplicación, se debe tener lo siguiente:
 * Nginx instalado y configurado con certificados SSL usando Let's Encrypt
 * Un server block creado en Nginx. Para este caso usaremos "holotourism.com" 
 * pm2 instalado
-* Proyecto clonado
+* Proyecto clonado y con las credenciales para google cloud storage, google vision ai y mongodb
 
 Con el usuario no root:
 
