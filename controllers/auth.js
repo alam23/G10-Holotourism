@@ -70,7 +70,7 @@ const loginUsuario = async( req=request , res=response ) => {
             // si la contraceña no es valida
             return res.status(400).json({
                 ok: false,
-                msg: 'Contraceña incorrecta'
+                msg: 'Contraseña incorrecta'
             });
         }
 
